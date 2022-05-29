@@ -1,0 +1,46 @@
+{% from 'macros.html' import sidepane %}
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cars Data Analysis</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <!-- <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script> -->
+    <!-- CSS only -->
+    <!-- JavaScript Bundle with Popper -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body style="display: flex">
+    {{sidepane()}}
+
+    <div id="chart" class="chart"></div>
+    <div id="chart2" class="chart2"></div>
+
+    <!-- Use any element to open the sidenav -->
+    <script></script>
+    <script>
+      d = {{graphJSON | safe}};
+      Plotly.newPlot('chart',d,{})
+      d2 = {{graphJSON2 | safe}};
+      Plotly.newPlot('chart2',d2,{})
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/viewin@main/inview.js"></script>
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+{% from 'macros.html' import sidepane %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cars Data Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script> -->
+   <!-- CSS only -->
+<!-- JavaScript Bundle with Popper -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body style="display: flex;">
+
+      {{sidepane()}}
+      <div style = "background-image: url(https://media.istockphoto.com/photos/car-ride-on-road-with-copy-space-motion-blur-picture-id996990918?b=1&k=20&m=996990918&s=170667a&w=0&h=EwAHlZJ7f4-MMTIg7vWSFLPNeVfVr9rJKO4sAFx4ls4=);width:100vw;height:100vh;background-size: cover;">
+      <div class = "segments-dat">
+<h1>
+Car Price Prediction
+
+</h1>
+    </div>
+        <form class = "form-predict" method="post" action = "/predict">
+            <div style = "width : max-content ;display: flex;gap:100px;margin-left: 15%;margin-top: -4%;">
+            <div>
+            <div class="form-group smline">
+              <label for="displacement">Engine Displacement </label>
+              <input required min  = 600 max = 7000 type="number" name="displacement" type="text" class="form-control" id="displacement" aria-describedby="emailHelp" placeholder="(in cc)">
+              <p style = "cursor: pointer;"title = "Cubic Capacity, is the measure of power output of the engine Values(200 to 7000)">&#x24D8;</p>
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+            <div class="form-group smline">
+              <label for="Torque">Torque</label>
+              <input required min = 100 max  = 1000 name= "torque" type="number" class="form-control" id="Torque" placeholder="Torque"><a  style = "cursor: pointer;"title = "Torque is the measure of acceleration produced by the engine and speed consistency management mostly (200 to 1000)" class = "tooltip">&#x24D8;</a>
+            </div>
+            <div class="form-group smline">
+                <label for="mileage">Mileage</label>
+                <input required min = 1 max  = 26 name= "mileage" type="number" class="form-control" id="mileage" placeholder="Mileage(km/l)"><p style = "cursor: pointer;"title = "Mileage is the measure of distance covered by car once fed 1L of fuel">&#x24D8;</p>
+              </div>
+            <div class="form-group smline">
+                <label for="capacity">Fuel Tank Capacity</label>
+                <input required min  = 40 max = 108 name= "fuel_tank" type="number" class="form-control" id="capacity" placeholder="Capacty (liters)">
+              </div>
+
+              <div class="form-group smline">
+                <label for="doors">Doors</label>
+                <input required min = 2 max= 5 name= "doors" type="number" class="form-control" id="doors" placeholder="number of doors">
+              </div>
+              <div class="form-group smline">
+                <label for="Cylinders">Cylinders</label>
+                <input required name= "cylinders" type="number" min = 1 max = 16 class="form-control" id="Cylinders" placeholder="Cylinders"><p style = "cursor: pointer;"title = "Number of cylinders decides the size of engine (4 to 12)">&#x24D8;</p>
+              </div>
+           
+                <div class="form-group smline">
+                    <label for="power">Power</label>
+                    <input required name= "power" type="number" min = 30 max = 750 class="form-control" id="power" placeholder="Power(in HP)">
+                  </div>
+              <div class="form-group smline">
+                <label for="Scapacity">Seating Capacity</label>
+                <input required name= "seats" type="number" min = 3 max = 16 class="form-control" id="Scapacity" placeholder="Seating Capacity">
+              </div>
+            </div>
+            <div >
+              <div class="form-group smline">
+                <label for="airbags">Number Of Airbags</label>
+                <input required name= "airbags" type="number" min = 1 max = 14 class="form-control" id="airbags" placeholder="number of airbags">
+              </div>
+
+           
+              
+            <div class="form-group form-check">
+              <input value = 1 name="keyless_entry" type="checkbox" class="form-check-input" id="keyless">
+              <label class="form-check-label" for="keyless">Keyless Entry</label>
+            </div>
+            <div class="form-group form-check">
+                <input value = 1 name="12Vpower" type="checkbox" class="form-check-input" id="12Vpower">
+                <label class="form-check-label" for="12Vpower">12V power outlet</label>
+              </div>
+              <div class="form-group form-check">
+                <input value = 1 name="start/stop" type="checkbox" class="form-check-input" id="start/stop">
+                <label class="form-check-label" for="start/stop">start/stop button</label>
+              </div>
+              <div class="form-group form-check">
+                <input value = 1 name="Aux" type="checkbox" class="form-check-input" id="Aux">
+                <label class="form-check-label" for="Aux">Aux Support</label>
+              </div>
+              <div class="form-group form-check">
+                <input value = 1 name="enginemalf_alarm" type="checkbox" class="form-check-input" id="enginemalf_alarm">
+                <label class="enginemalf_alarm" for="exampleCheck1">Engine malfunction alarm</label>
+              </div>
+              <div class="form-group form-check">
+                <input value = 1 name="highspeed_alert" type="checkbox" class="form-check-input" id="highspeed_alert">
+                <label class="form-check-label" for="highspeed_alert">High Speed Alert System</label>
+              </div>
+              <div class="form-group form-check">
+                <input value = 1 name="tripmeter" type="checkbox" class="form-check-input" id="tripmeter">
+                <label class="form-check-label" for="tripmeter">Tripmeter</label>
+              </div>
+            <button type="submit" class="btn btn-primary">Predict and Play</button>
+        </div> 
+        </form>
+      </div>
+        </div>
+      <!-- Use any element to open the sidenav -->
+      <script>
+        function cb(selection){
+        
+    </script>
+      <script>
+          d = {{graphJSON | safe}};
+          Plotly.newPlot('chart',d,{})
+      </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/viewin@main/inview.js"></script>
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>

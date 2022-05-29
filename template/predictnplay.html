@@ -1,0 +1,62 @@
+{% from 'macros.html' import sidepane %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cars Data Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script> -->
+   <!-- CSS only -->
+<!-- JavaScript Bundle with Popper -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+</head>
+<body style="display: flex;background-image: linear-gradient(0deg,rgb(74, 141, 255),white);height: 110vh;">
+
+{{sidepane()}}
+<div style = "display: flex;flex-direction:column;justify-items: center;width:60vw;">
+<div class = "segments-dat">
+<h3 style="width: max-content;">Estimated price<br> of car is ₹{{cost}}</h3>
+</p>
+</div>
+Now experience driving the car with similar specifications in a game like simulator environment.
+
+<br> 
+
+<div style = "display: none;">
+    <div id = "gmode">{{gmode}}</div>
+
+    <div id = "torque">{{torque}}</div>
+    <div id = "tfuel">{{tfuel}}</div>
+</div>
+
+
+<div style = "width: 80vw;height: 160%;">
+        <main style = "width:min-content;  margin: auto;border: 3px solid black;">
+        </main>
+    </div>
+    </div>
+      <!-- Use any element to open the sidenav -->
+      <script>
+        function cb(selection){
+     
+    </script>
+      <script>
+          d = {{graphJSON | safe}};
+          Plotly.newPlot('chart',d,{})
+          d2 = {{graphJSON2 | safe}};
+          Plotly.newPlot('chart2',d2,{})
+      </script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/viewin@main/inview.js"></script>
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sketch.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>

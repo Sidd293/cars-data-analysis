@@ -1,0 +1,115 @@
+{% from 'macros.html' import sidepane %}
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cars Data Analysis</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <!-- <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script> -->
+    <!-- CSS only -->
+    <!-- JavaScript Bundle with Popper -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body style="display: flex">
+    {{sidepane()}}
+
+    <div class="cont-segmntx">
+      <div class="s-card-cont">
+        <div class="s-card">
+          <h1>{{sgmnt}}</h1>
+          <h5>Segment Number</h5>
+        </div>
+        <div class="s-card">
+          <h1>{{x}}</h1>
+          <h5>Cars</h5>
+        </div>
+        <div class="s-card">
+          <h1>₹{{avgprice}}</h1>
+          <h5>Average cost</h5>
+        </div>
+        <div class="s-card">
+          <h1>{{avgmileage}}km/l</h1>
+          <h5>Average Mileage</h5>
+        </div>
+        <!-- <div class="s-card">
+                <h1>414</h1>
+                <h5>Cars</h5>
+                
+            </div> -->
+      </div>
+      <div class="segmntx">
+        <div
+          id="chart"
+          class="chart2 hov"
+          style="transform: scale(0.5); margin-left: -15vw; width: min-content"
+        ></div>
+
+        <div
+          style="
+            padding-inline: 30px;
+            margin-top: 40px;
+            margin-left: -20%;
+            height: 60vh;
+            overflow-y: scroll;
+            transform: scale(0.8);
+          "
+          class="feature-row"
+        >
+          <!-- <table   style =  "margin-top: 0px;"> -->
+          <!-- <tr cellspacing = "20px"><th>specification</th><th align="right">most popular</th></tr> -->
+          <h5>Popular Combination Specifications(select)</h5>
+          {% for i in mx %}
+          <!-- <tr  style = "margin : 30px;background-color: green;padding-inline: 20px;border-radius: 20px;" >   <td class = "tr"> {{i[0]}}</td><td align="right">{{i[1]}}  </td>  </tr> -->
+
+          <div class="sgmnt-dat-cont tr">
+            <p>{{i[0]}}</p>
+            -
+            <p>{{i[1]}}</p>
+          </div>
+          {% endfor %}
+
+          <!-- </table> -->
+        </div>
+        <div
+          id="chart2"
+          style="
+            width: 45%;
+            height: 25%;
+            margin-right: -30px;
+            background-color: pink;
+            transform: scale(0.8);
+          "
+        ></div>
+      </div>
+    </div>
+
+    <!-- Use any element to open the sidenav -->
+    <script></script>
+    <script>
+      d = {{graphJSON | safe}};
+      Plotly.newPlot('chart',d,{})
+      d2 = {{graphJSON2 | safe}};
+      Plotly.newPlot('chart2',d2,{})
+      d3 = {{graphJSON2 | safe}};
+      Plotly.newPlot('chart3',d3,{})
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/viewin@main/inview.js"></script>
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

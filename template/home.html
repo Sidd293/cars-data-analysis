@@ -1,0 +1,72 @@
+{% from 'macros.html' import sidepane %}
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cars Data Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wave.css') }}">
+
+    <!-- <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script> -->
+   <!-- CSS only -->
+<!-- JavaScript Bundle with Popper -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+</head>
+<body style="display: flex;">
+
+{{sidepane()}}
+
+
+<div>
+    <section class = "jumb-home">
+        <div class = "svg1"></div>
+<img class = "j-img" src="https://res.cloudinary.com/sidd293/image/upload/v1653667031/SeekPng.com_suv-png_8656284_icgcsc.png" alt="" srcset="">
+<h1 class = "text-cont-j">
+Data Analysis Tool For Indian Cars 
+</h1>
+<div class = "svg2"></div>
+<div class = "h-lights"></div>
+
+ 
+</section>
+<section class = "jumb-home flex " style = "height: 120vh">
+    <h1>Tools Offered</h1>
+<div class = "j-card-cont">
+    <div class = "sub-card " style = "display:flex;flex-direction: row;background-color: #a86f49;"><H1  style = "color:white;width: min-content;padding:-40px">Price Prediction Tool</H1> <img src= "https://res.cloudinary.com/sidd293/image/upload/v1653726982/rupee-removebg-preview_qpsrpy.png" style = "transform: scale(1.5) rotate(20deg);padding: -10px;margin-left: 10%;" width="30%" height = "60%";></img></div>
+    <div class = "sub-card" style="padding:2%"><h5>Price Prediction Model based on machine learning which not only predicts the car price but also lets you drive that car in a game type environment</h5><a style="align-self: center;" href="/predict"><button style = "z-index: 3;" class="btn btn-primary">Checkout</button></a></div>
+
+</div>
+<div class = "j-card-cont" style="flex-direction: row-reverse;" >
+    <div class = "sub-card " style = "display:flex;flex-direction: row-reverse;background-color: #a86f49;"><H1 style = "color:white;width: min-content;">Customer Segmentation</H1> <img src= "https://res.cloudinary.com/sidd293/image/upload/v1653672279/images-removebg-preview_2_bphvtk.png" style = "transform: scale(1.3) rotate(20deg);" width="100%" height = "100%"></img></div>
+    <div class = "sub-card" style="padding:1%"><h5>All the cars sold in india are clustered in multiple segments according to different features using k-means clustering</h5><a style="margin-left: 0% ;" href="/segments"><button class="btn btn-primary">Checkout</button></a></div>
+
+</div>
+</section>
+<center>Made with ❤ by <a href = "https://siddharthabajpai.netlify.app/ ">Siddhartha Bajpai</a> </center>
+</div>
+      <!-- Use any element to open the sidenav -->
+      <script>
+      
+    </script>
+      <script>
+          d = {{graphJSON | safe}};
+          Plotly.newPlot('chart',d,{})
+          d2 = {{graphJSON2 | safe}};
+          Plotly.newPlot('chart2',d2,{})
+      </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/rotator@main/rotator.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Sidd293/viewin@main/inview.js"></script>
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/sketch.js') }}"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>
